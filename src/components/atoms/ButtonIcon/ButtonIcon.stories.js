@@ -5,6 +5,7 @@ import bulbIcon from 'assets/icons/light-bulb.svg';
 import logoutIcon from 'assets/icons/logout.svg';
 import plusIcon from 'assets/icons/plus.svg';
 import penIcon from 'assets/icons/edit.svg';
+import twitterIcon from 'assets/icons/twitter.svg';
 import ButtonIcon from './ButtonIcon';
 
 const YellowBackground = styled.div`
@@ -25,4 +26,6 @@ storiesOf('ButtonIcon', module)
   .add('Plus icon', () => <ButtonIcon icon={plusIcon} />)
   .add('Plus icon active', () => <ButtonIcon icon={plusIcon} active />)
   .add('Pen icon', () => <ButtonIcon icon={penIcon} />)
-  .add('Pen icon active', () => <ButtonIcon icon={penIcon} active />);
+  .add('Pen icon active', () => <ButtonIcon icon={penIcon} active />)
+  .add('Twitter icon', () => <ButtonIcon icon={twitterIcon} />)
+  .add('Twitter icon active', () => <ButtonIcon icon={twitterIcon} active />);
