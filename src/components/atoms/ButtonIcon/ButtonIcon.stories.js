@@ -13,7 +13,7 @@ const YellowBackground = styled.div`
   align-items: center;
   width: 100px;
   height: 100px;
-  background: ${({ theme }) => theme.primary};
+  background: ${({ theme }) => theme.note};
 `;
 
 storiesOf('ButtonIcon', module)
