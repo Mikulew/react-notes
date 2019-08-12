@@ -4,5 +4,5 @@ import Card from './Card';
 
 storiesOf('Card', module)
   .add('Note', () => <Card />)
-  .add('Twitter', () => <Card cardType="twitter" />)
-  .add('Article', () => <Card cardType="article" />);
+  .add('Twitter', () => <Card cardType="twitters" />)
+  .add('Article', () => <Card cardType="articles" />);
