@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Sidebar from 'components/organisms/Sidebar/Sidebar';
+import { EnumPageTypes } from 'enums/EnumPageTypes';
 
 const UserPageTemplate = ({ children, pageType }) => (
   <>
@@ -11,11 +12,11 @@ const UserPageTemplate = ({ children, pageType }) => (
 
 UserPageTemplate.propTypes = {
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
-  pageType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
+  pageType: PropTypes.oneOf([EnumPageTypes.NOTES, EnumPageTypes.TWITTERS, EnumPageTypes.ARTICLES]),
 };
 
 UserPageTemplate.defaultProps = {
-  pageType: 'notes',
+  pageType: EnumPageTypes.NOTES,
 };
 
 export default UserPageTemplate;

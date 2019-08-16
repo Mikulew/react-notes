@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import GridTemplate from 'templates/GridTemplate';
 import Card from 'components/molecules/Card/Card';
+import { EnumPageTypes } from 'enums/EnumPageTypes';
 
 const Twitters = ({ twitters }) => (
-  <GridTemplate pageType="twitters">
+  <GridTemplate pageType={EnumPageTypes.TWITTERS}>
     {twitters.map(twitter => (
       <Card
-        cardType="twitters"
+        cardType={EnumPageTypes.TWITTERS}
         id={twitter.id}
         title={twitter.title}
         content={twitter.content}

@@ -6,6 +6,7 @@ import UserPageTemplate from 'templates/UserPageTemplate';
 import Heading from 'components/atoms/Heading/Heading';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Button from 'components/atoms/Button/Button';
+import { EnumPageTypes } from 'enums/EnumPageTypes';
 
 const StyledWrapper = styled.div`
   padding: 25px 150px 25px 70px;
@@ -62,8 +63,10 @@ const DetailsTemplate = ({ pageType, title, created, content, articleUrl, twitte
         <StyledParagraph>{created}</StyledParagraph>
       </StyledPageHeader>
       <Paragraph>{content}</Paragraph>
-      {pageType === 'articles' && <StyledLink href={articleUrl}>Open article</StyledLink>}
-      {pageType === 'twitters' && (
+      {pageType === EnumPageTypes.ARTICLES && (
+        <StyledLink href={articleUrl}>Open article</StyledLink>
+      )}
+      {pageType === EnumPageTypes.TWITTERS && (
         <StyledImage alt={title} stc={`https://avatars/io/twitter/${twitterName}`} />
       )}
       <Button as={Link} to={`/${pageType}`} activeColor={pageType}>

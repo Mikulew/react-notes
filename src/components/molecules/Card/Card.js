@@ -6,6 +6,7 @@ import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Heading from 'components/atoms/Heading/Heading';
 import Button from 'components/atoms/Button/Button';
 import LinkIcon from 'assets/icons/link.svg';
+import { EnumPageTypes } from 'enums/EnumPageTypes';
 
 const StyledWrapper = styled.div`
   color: ${({ theme }) => theme.white};
@@ -88,10 +89,10 @@ class Card extends Component {
         <InnersWrapper activeColor={cardType}>
           <StyledHeading>{title}</StyledHeading>
           <DateInfo>{created}</DateInfo>
-          {cardType === 'twitters' && (
+          {cardType === EnumPageTypes.TWITTERS && (
             <StyledAvatar src={`https://avatars.io/twitter/${twitterName}`} />
           )}
-          {cardType === 'articles' && <StyledLinkButton href={articleUrl} />}
+          {cardType === EnumPageTypes.ARTICLES && <StyledLinkButton href={articleUrl} />}
         </InnersWrapper>
         <InnersWrapper flex>
           <Paragraph>{content}</Paragraph>
@@ -104,7 +105,7 @@ class Card extends Component {
 
 Card.propTypes = {
   id: PropTypes.number.isRequired,
-  cardType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
+  cardType: PropTypes.oneOf([EnumPageTypes.NOTES, EnumPageTypes.TWITTERS, EnumPageTypes.ARTICLES]),
   title: PropTypes.string.isRequired,
   created: PropTypes.string.isRequired,
   twitterName: PropTypes.string,
@@ -113,7 +114,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
-  cardType: 'notes',
+  cardType: EnumPageTypes.NOTES,
   twitterName: null,
   articleUrl: null,
 };

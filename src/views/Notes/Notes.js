@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import GridTemplate from 'templates/GridTemplate';
 import Card from 'components/molecules/Card/Card';
+import { EnumPageTypes } from 'enums/EnumPageTypes';
 
 const Notes = ({ notes }) => (
-  <GridTemplate pageType="notes">
+  <GridTemplate pageType={EnumPageTypes.NOTES}>
     {notes.map(note => (
       <Card
-        cardType="notes"
+        cardType={EnumPageTypes.NOTES}
         id={note.id}
         title={note.title}
         content={note.content}

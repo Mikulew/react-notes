@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DetailsTemplate from 'templates/DetailsTemplate';
 import { EnumRoutes } from 'enums/EnumRoutes';
+import { EnumPageTypes } from 'enums/EnumPageTypes';
 
 class DetailsPage extends Component {
   state = {
-    pageType: 'notes',
+    pageType: EnumPageTypes.NOTES,
   };
 
   componentDidMount() {
@@ -13,13 +14,13 @@ class DetailsPage extends Component {
 
     switch (match.path) {
       case EnumRoutes.NOTE:
-        this.setState({ pageType: 'notes' });
+        this.setState({ pageType: EnumPageTypes.NOTES });
         break;
       case EnumRoutes.TWITTER:
-        this.setState({ pageType: 'twitters' });
+        this.setState({ pageType: EnumPageTypes.TWITTERS });
         break;
       case EnumRoutes.ARTICLE:
-        this.setState({ pageType: 'articles' });
+        this.setState({ pageType: EnumPageTypes.ARTICLES });
         break;
       default:
         break;
