@@ -1,4 +1,4 @@
-const initialState = {
+const INITIAL_STATE = {
   notes: [
     {
       id: 1,
@@ -27,6 +27,18 @@ const initialState = {
   ],
 };
 
-const rootReducer = (state = initialState, action) => state;
+const rootReducer = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case 'REMOVE_ITEM':
+      return {
+        ...state,
+        [action.payload.itemType]: [
+          ...state[action.payload.itemType].filter(item => item.id !== action.payload.id),
+        ],
+      };
+    default:
+      return state;
+  }
+};
 
 export default rootReducer;
