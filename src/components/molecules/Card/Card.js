@@ -7,6 +7,7 @@ import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Heading from 'components/atoms/Heading/Heading';
 import Button from 'components/atoms/Button/Button';
 import LinkIcon from 'assets/icons/link.svg';
+import withContext from 'hoc/withContext';
 import { EnumPageTypes } from 'enums/EnumPageTypes';
 import { removeItem as removeItemAction } from 'actions';
 
@@ -82,7 +83,7 @@ class Card extends Component {
   render() {
     const {
       id,
-      cardType,
+      pageContext,
       title,
       created,
       twitterName,
@@ -93,21 +94,21 @@ class Card extends Component {
     const { redirect } = this.state;
 
     if (redirect) {
-      return <Redirect to={`${cardType}/${id}`} />;
+      return <Redirect to={`${pageContext}/${id}`} />;
     }
     return (
       <StyledWrapper>
-        <InnersWrapper onClick={this.handleCardClick} activeColor={cardType}>
+        <InnersWrapper onClick={this.handleCardClick} activeColor={pageContext}>
           <StyledHeading>{title}</StyledHeading>
           <DateInfo>{created}</DateInfo>
-          {cardType === EnumPageTypes.TWITTERS && (
+          {pageContext === EnumPageTypes.TWITTERS && (
             <StyledAvatar src={`https://avatars.io/twitter/${twitterName}`} />
           )}
-          {cardType === EnumPageTypes.ARTICLES && <StyledLinkButton href={articleUrl} />}
+          {pageContext === EnumPageTypes.ARTICLES && <StyledLinkButton href={articleUrl} />}
         </InnersWrapper>
         <InnersWrapper flex>
           <Paragraph>{content}</Paragraph>
-          <Button onClick={() => removeItem(cardType, id)} secondary>
+          <Button onClick={() => removeItem(pageContext, id)} secondary>
             Remove
           </Button>
         </InnersWrapper>
@@ -118,7 +119,11 @@ class Card extends Component {
 
 Card.propTypes = {
   id: PropTypes.number.isRequired,
-  cardType: PropTypes.oneOf([EnumPageTypes.NOTES, EnumPageTypes.TWITTERS, EnumPageTypes.ARTICLES]),
+  pageContext: PropTypes.oneOf([
+    EnumPageTypes.NOTES,
+    EnumPageTypes.TWITTERS,
+    EnumPageTypes.ARTICLES,
+  ]),
   title: PropTypes.string.isRequired,
   created: PropTypes.string.isRequired,
   twitterName: PropTypes.string,
@@ -128,7 +133,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
-  cardType: EnumPageTypes.NOTES,
+  pageContext: EnumPageTypes.NOTES,
   twitterName: null,
   articleUrl: null,
 };
@@ -140,4 +145,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   null,
   mapDispatchToProps,
-)(Card);
+)(withContext(Card));

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
@@ -6,7 +7,9 @@ import penIcon from 'assets/icons/edit.svg';
 import twitterIcon from 'assets/icons/twitter.svg';
 import bulbIcon from 'assets/icons/light-bulb.svg';
 import logoutIcon from 'assets/icons/logout.svg';
+import withContext from 'hoc/withContext';
 import { EnumRoutes } from 'enums/EnumRoutes';
+import { EnumPageTypes } from 'enums/EnumPageTypes';
 
 const StyledWrapper = styled.nav`
   position: fixed;
@@ -32,8 +35,8 @@ const StyledLinksList = styled.ul`
   list-style: none;
 `;
 
-const Sidebar = ({ pageType }) => (
-  <StyledWrapper activeColor={pageType}>
+const Sidebar = ({ pageContext }) => (
+  <StyledWrapper activeColor={pageContext}>
     <StyledLinksList>
       <li>
         <ButtonIcon as={NavLink} to={EnumRoutes.NOTES} icon={penIcon} activeclass="active" />
@@ -49,4 +52,16 @@ const Sidebar = ({ pageType }) => (
   </StyledWrapper>
 );
 
-export default Sidebar;
+Sidebar.propTypes = {
+  pageContext: PropTypes.oneOf([
+    EnumPageTypes.NOTES,
+    EnumPageTypes.TWITTERS,
+    EnumPageTypes.ARTICLES,
+  ]),
+};
+
+Sidebar.defaultProps = {
+  pageContext: EnumPageTypes.NOTES,
+};
+
+export default withContext(Sidebar);

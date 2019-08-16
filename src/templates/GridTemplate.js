@@ -5,6 +5,7 @@ import UserPageTemplate from 'templates/UserPageTemplate';
 import Input from 'components/atoms/Input/Input';
 import Heading from 'components/atoms/Heading/Heading';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
+import withContext from 'hoc/withContext';
 import { EnumPageTypes } from 'enums/EnumPageTypes';
 
 const StyledWrapper = styled.div`
@@ -33,15 +34,15 @@ const StyledParagraph = styled(Paragraph)`
   margin: 0;
 `;
 
-const GridTemplate = ({ children, pageType }) => (
-  <UserPageTemplate pageType={pageType}>
+const GridTemplate = ({ children, pageContext }) => (
+  <UserPageTemplate>
     <StyledWrapper>
       <StyledPageHeader>
         <Input search />
         <StyledHeading big as="h1">
-          {pageType}
+          {pageContext}
         </StyledHeading>
-        <StyledParagraph>5 {pageType}</StyledParagraph>
+        <StyledParagraph>5 {pageContext}</StyledParagraph>
       </StyledPageHeader>
       <StyledGrid>{children}</StyledGrid>
     </StyledWrapper>
@@ -50,11 +51,15 @@ const GridTemplate = ({ children, pageType }) => (
 
 GridTemplate.propTypes = {
   children: PropTypes.arrayOf(PropTypes.object).isRequired,
-  pageType: PropTypes.oneOf([EnumPageTypes.NOTES, EnumPageTypes.TWITTERS, EnumPageTypes.ARTICLES]),
+  pageContext: PropTypes.oneOf([
+    EnumPageTypes.NOTES,
+    EnumPageTypes.TWITTERS,
+    EnumPageTypes.ARTICLES,
+  ]),
 };
 
 GridTemplate.defaultProps = {
-  pageType: EnumPageTypes.NOTES,
+  pageContext: EnumPageTypes.NOTES,
 };
 
-export default GridTemplate;
+export default withContext(GridTemplate);
