@@ -6,7 +6,7 @@ import Notes from 'views/Notes/Notes';
 import Articles from 'views/Articles/Articles';
 import Twitters from 'views/Twitters/Twitters';
 import DetailsPage from 'views/DetailsPage/DetailsPage';
-import { routes } from 'routes';
+import { EnumRoutes } from 'enums/EnumRoutes';
 import store from 'store';
 
 const App = () => (
@@ -14,13 +14,13 @@ const App = () => (
     <BrowserRouter>
       <MainTemplate>
         <Switch>
-          <Route exact path={routes.home} render={() => <Redirect to={routes.notes} />} />
-          <Route exact path={routes.notes} component={Notes} />
-          <Route path={routes.note} component={DetailsPage} />
-          <Route exact path={routes.articles} component={Articles} />
-          <Route path={routes.article} component={DetailsPage} />
-          <Route exact path={routes.twitters} component={Twitters} />
-          <Route path={routes.twitter} component={DetailsPage} />
+          <Route exact path={EnumRoutes.HOME} render={() => <Redirect to={EnumRoutes.NOTES} />} />
+          <Route exact path={EnumRoutes.NOTES} component={Notes} />
+          <Route path={EnumRoutes.NOTE} component={DetailsPage} />
+          <Route exact path={EnumRoutes.ARTICLES} component={Articles} />
+          <Route path={EnumRoutes.ARTICLE} component={DetailsPage} />
+          <Route exact path={EnumRoutes.TWITTERS} component={Twitters} />
+          <Route path={EnumRoutes.TWITTER} component={DetailsPage} />
         </Switch>
       </MainTemplate>
     </BrowserRouter>
