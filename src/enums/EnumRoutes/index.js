@@ -3,9 +3,9 @@ export class EnumRoutes {
   static ARTICLES = '/articles';
   static ARTICLE = '/articles/:id';
   static TWITTERS = '/twitters';
-  static TWITTER = '/twitter/:id';
+  static TWITTER = '/twitters/:id';
   static NOTES = '/notes';
-  static NOTE = '/note/:id';
+  static NOTE = '/notes/:id';
   static LOGIN = '/login';
   static LOGOUT = '/logout';
 }

@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import store from 'store';
 import MainTemplate from 'templates/MainTemplate';
 import Notes from 'views/Notes/Notes';
 import Articles from 'views/Articles/Articles';
 import Twitters from 'views/Twitters/Twitters';
 import DetailsPage from 'views/DetailsPage/DetailsPage';
 import { EnumRoutes } from 'enums/EnumRoutes';
-import store from 'store';
 
 const App = () => (
   <Provider store={store}>
