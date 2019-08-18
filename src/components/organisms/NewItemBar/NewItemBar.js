@@ -20,6 +20,8 @@ const StyledWrapper = styled.div`
   border-left: 10px solid ${({ theme, activeColor }) => theme[activeColor]};
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
   z-index: 9999;
+  transform: translate(${({ isVisible }) => (isVisible ? '0' : '100%')});
+  transition: transform 0.25s ease-in-out;
 `;
 
 const StyledTextArea = styled(Input)`
@@ -28,10 +30,15 @@ const StyledTextArea = styled(Input)`
   height: 30vh;
 `;
 
-const NewItemBar = ({ pageContext }) => (
-  <StyledWrapper activeColor={pageContext}>
+const StyledInput = styled(Input)`
+  margin-top: 30px;
+`;
+
+const NewItemBar = ({ pageContext, isVisible }) => (
+  <StyledWrapper isVisible={isVisible} activeColor={pageContext}>
     <Heading big>Create new {pageContext}</Heading>
-    <Input placeholder="title" />
+    <StyledInput placeholder={pageContext === EnumPageTypes.TWITTERS ? 'Account name' : 'Title'} />
+    {pageContext === EnumPageTypes.ARTICLES && <StyledInput placeholder="link" />}
     <StyledTextArea as="textarea" placeholder="title" />
     <Button activeColor={pageContext}>Add Note</Button>
   </StyledWrapper>
@@ -43,6 +50,7 @@ NewItemBar.propTypes = {
     EnumPageTypes.TWITTERS,
     EnumPageTypes.ARTICLES,
   ]),
+  isVisible: PropTypes.bool.isRequired,
 };
 
 NewItemBar.defaultProps = {
