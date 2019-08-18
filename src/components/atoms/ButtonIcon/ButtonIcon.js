@@ -11,6 +11,7 @@ const ButtonIcon = styled.button`
   background-position: 50% 50%;
   background-size: 50%;
   border: none;
+  cursor: pointer;
 
   &.active {
     background-color: ${({ theme }) => theme.white};
