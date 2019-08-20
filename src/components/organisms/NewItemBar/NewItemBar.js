@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Heading from 'components/atoms/Heading/Heading';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
+import { Formik, Form } from 'formik';
 import withContext from 'hoc/withContext';
 import { EnumPageTypes } from 'enums/EnumPageTypes';
 
@@ -26,6 +27,11 @@ const StyledWrapper = styled.div`
   transition: transform 0.25s ease-in-out;
 `;
 
+const StyledForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
+`;
+
 const StyledTextArea = styled(Input)`
   margin: 30px 0 100px;
   border-radius: 10px;
@@ -36,20 +42,53 @@ const StyledInput = styled(Input)`
   margin-top: 30px;
 `;
 
-const NewItemBar = ({ pageContext, isVisible, addItem }) => (
+const NewItemBar = ({ pageContext, isVisible, addItem, handleClose }) => (
   <StyledWrapper isVisible={isVisible} activeColor={pageContext}>
     <Heading big>Create new {pageContext}</Heading>
-    <StyledInput placeholder={pageContext === EnumPageTypes.TWITTERS ? 'Account name' : 'Title'} />
-    {pageContext === EnumPageTypes.ARTICLES && <StyledInput placeholder="link" />}
-    <StyledTextArea as="textarea" placeholder="title" />
-    <Button
-      onClick={() =>
-        addItem(pageContext, { title: 'Add New Item', content: 'Lorem ipsum dolor sit amet.' })
-      }
-      activeColor={pageContext}
+    <Formik
+      initialValues={{ title: '', content: '', articleUrl: '', twitterName: '', created: '' }}
+      onSubmit={values => {
+        addItem(pageContext, values);
+        handleClose();
+      }}
     >
-      Add Note
-    </Button>
+      {({ values, handleChange, handleBlur }) => (
+        <StyledForm>
+          <StyledInput
+            type="text"
+            name="title"
+            placeholder="title"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.title}
+          />
+          {pageContext === EnumPageTypes.TWITTERS && (
+            <StyledInput
+              type="text"
+              name="twitterName"
+              placeholder="twitter name"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.twitterName}
+            />
+          )}
+          {pageContext === EnumPageTypes.ARTICLES && (
+            <StyledInput type="text" name="artileUrl" placeholder="link" />
+          )}
+          <StyledTextArea
+            as="textarea"
+            name="content"
+            placeholder="Type text"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.content}
+          />
+          <Button type="submit" activeColor={pageContext}>
+            Add Note
+          </Button>
+        </StyledForm>
+      )}
+    </Formik>
   </StyledWrapper>
 );
 
