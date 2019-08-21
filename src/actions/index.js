@@ -8,9 +8,12 @@ export const addItem = (itemType, itemContent) => {
 
   return {
     type: 'ADD_ITEM',
-    item: {
-      id: getId(),
-      ...itemContent,
+    payload: {
+      itemType,
+      item: {
+        id: getId(),
+        ...itemContent,
+      },
     },
   };
 };
