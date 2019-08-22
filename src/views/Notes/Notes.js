@@ -9,7 +9,7 @@ const Notes = ({ notes }) => (
   <GridTemplate pageType={EnumPageTypes.NOTES}>
     {notes.map(note => (
       <Card
-        cardType={EnumPageTypes.NOTES}
+        pageContext={EnumPageTypes.NOTES}
         id={note.id}
         title={note.title}
         content={note.content}
@@ -24,7 +24,7 @@ Notes.propTypes = {
   notes: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      cardType: PropTypes.string.isRequired,
+      pageContext: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
       created: PropTypes.string.isRequired,
