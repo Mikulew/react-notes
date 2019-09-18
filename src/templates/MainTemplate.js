@@ -21,10 +21,13 @@ class MainTemplate extends Component {
   }
 
   setCurrentPage = (prevState = '') => {
-    const pageTypes = [EnumRoutes.NOTES, EnumRoutes.TWITTERS, EnumRoutes.ARTICLES];
     const {
       location: { pathname },
     } = this.props;
+    if (pathname === EnumRoutes.LOGIN) {
+      return;
+    }
+    const pageTypes = [EnumRoutes.NOTES, EnumRoutes.TWITTERS, EnumRoutes.ARTICLES];
     const [currentUrl] = pageTypes.filter(page => pathname.includes(page));
     const currentPage = currentUrl.replace(/^\//, '');
     if (prevState.pageType !== currentPage) {
@@ -49,6 +52,13 @@ class MainTemplate extends Component {
 
 MainTemplate.propTypes = {
   children: PropTypes.element.isRequired,
+  location: PropTypes.shape({ pathname: PropTypes.string }),
+};
+
+MainTemplate.defaultProps = {
+  location: {
+    pathname: '',
+  },
 };
 
 export default withRouter(MainTemplate);

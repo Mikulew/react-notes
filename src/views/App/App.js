@@ -7,6 +7,7 @@ import Notes from 'views/Notes/Notes';
 import Articles from 'views/Articles/Articles';
 import Twitters from 'views/Twitters/Twitters';
 import DetailsPage from 'views/DetailsPage/DetailsPage';
+import LoginPage from 'views/LoginPage/LoginPage';
 import { EnumRoutes } from 'enums/EnumRoutes';
 
 const App = () => (
@@ -14,6 +15,7 @@ const App = () => (
     <BrowserRouter>
       <MainTemplate>
         <Switch>
+          <Route exact path={EnumRoutes.LOGIN} component={LoginPage} />
           <Route exact path={EnumRoutes.HOME} render={() => <Redirect to={EnumRoutes.NOTES} />} />
           <Route exact path={EnumRoutes.NOTES} component={Notes} />
           <Route path={EnumRoutes.NOTE} component={DetailsPage} />
