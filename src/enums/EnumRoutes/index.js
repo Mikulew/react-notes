@@ -8,4 +8,5 @@ export class EnumRoutes {
   static NOTE = '/notes/:id';
   static LOGIN = '/login';
   static LOGOUT = '/logout';
+  static REGISTER = '/register';
 }

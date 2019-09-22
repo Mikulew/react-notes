@@ -24,7 +24,7 @@ class MainTemplate extends Component {
     const {
       location: { pathname },
     } = this.props;
-    if (pathname === EnumRoutes.LOGIN) {
+    if (pathname === EnumRoutes.LOGIN || EnumRoutes.REGISTER) {
       return;
     }
     const pageTypes = [EnumRoutes.NOTES, EnumRoutes.TWITTERS, EnumRoutes.ARTICLES];
