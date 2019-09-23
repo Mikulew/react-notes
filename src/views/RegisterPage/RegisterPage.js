@@ -40,7 +40,7 @@ const RegisterPage = () => (
     >
       {({ handleChange, handleBlur, values }) => (
         <>
-          <Heading>Sign in</Heading>
+          <Heading>Register</Heading>
           <StyledForm>
             <StyledInput
               type="text"

@@ -6,10 +6,11 @@ import GlobalStyle from 'theme/GlobalStyle';
 import { theme } from 'theme/mainTheme';
 import PageContext from 'context';
 import { EnumRoutes } from 'enums/EnumRoutes';
+import { EnumPageTypes } from 'enums/EnumPageTypes';
 
 class MainTemplate extends Component {
   state = {
-    pageType: EnumRoutes.NOTES,
+    pageType: EnumPageTypes.NOTES,
   };
 
   componentDidMount() {
@@ -30,6 +31,7 @@ class MainTemplate extends Component {
     const pageTypes = [EnumRoutes.NOTES, EnumRoutes.TWITTERS, EnumRoutes.ARTICLES];
     const [currentUrl] = pageTypes.filter(page => pathname.includes(page));
     const currentPage = currentUrl.replace(/^\//, '');
+    console.log('currentPage', currentPage);
     if (prevState.pageType !== currentPage) {
       this.setState({ pageType: currentPage });
     }
