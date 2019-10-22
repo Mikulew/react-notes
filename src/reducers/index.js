@@ -1,3 +1,5 @@
+import types from 'types';
+
 const INITIAL_STATE = {
   notes: [
     {
@@ -29,12 +31,12 @@ const INITIAL_STATE = {
 
 const rootReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case 'ADD_ITEM':
+    case types.ADD_ITEM:
       return {
         ...state,
         [action.payload.itemType]: [...state[action.payload.itemType], action.payload.item],
       };
-    case 'REMOVE_ITEM':
+    case types.REMOVE_ITEM:
       return {
         ...state,
         [action.payload.itemType]: [

@@ -1,6 +1,10 @@
 import axios from 'axios';
+import types from 'types';
 
-export const removeItem = (itemType, id) => ({ type: 'REMOVE_ITEM', payload: { itemType, id } });
+export const removeItem = (itemType, id) => ({
+  type: types.REMOVE_ITEM,
+  payload: { itemType, id },
+});
 
 export const addItem = (itemType, itemContent) => {
   const getId = () =>
@@ -9,7 +13,7 @@ export const addItem = (itemType, itemContent) => {
       .substr(2, 9)}`;
 
   return {
-    type: 'ADD_ITEM',
+    type: types.ADD_ITEM,
     payload: {
       itemType,
       item: {
@@ -22,7 +26,7 @@ export const addItem = (itemType, itemContent) => {
 
 export const authenticate = (username, password) => dispatch => {
   dispatch({
-    type: 'AUTHENTICATE_REQUEST',
+    type: types.AUTH_REQUEST,
   });
 
   return axios
@@ -32,10 +36,10 @@ export const authenticate = (username, password) => dispatch => {
     })
     .then(payload => {
       console.log(payload);
-      dispatch({ type: 'AUTHENTICATE_SUCCESS', payload });
+      dispatch({ type: types.AUTH_SUCCESS, payload });
     })
     .catch(err => {
       console.log(err);
-      dispatch({ type: 'AUTHENTICATE_FAILURE' });
+      dispatch({ type: types.AUTH_FAILURE });
     });
 };
