@@ -5,7 +5,7 @@ import AuthTemplate from 'templates/AuthTemplate';
 import Heading from 'components/atoms/Heading/Heading';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { EnumRoutes } from 'enums/EnumRoutes';
 import { connect } from 'react-redux';
 import { authenticate as authenticateAction } from 'actions';
@@ -32,7 +32,7 @@ const StyledLink = styled(Link)`
   margin: 20px 0 50px;
 `;
 
-const LoginPage = ({ authenticate }) => (
+const LoginPage = ({ userID, authenticate }) => (
   <AuthTemplate>
     <Formik
       initialValues={{ username: '', password: '' }}
@@ -40,42 +40,49 @@ const LoginPage = ({ authenticate }) => (
         authenticate(username, password);
       }}
     >
-      {({ handleChange, handleBlur, values }) => (
-        <>
-          <Heading>Sign in</Heading>
-          <StyledForm>
-            <StyledInput
-              type="text"
-              name="username"
-              placeholder="Login"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.title}
-            />
-            <StyledInput
-              type="password"
-              name="password"
-              placeholder="Password"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.title}
-            />
-            <Button activecolor="notes" type="submit">
-              sign in
-            </Button>
-          </StyledForm>
-          <StyledLink to={EnumRoutes.REGISTER}>I want my account!</StyledLink>
-        </>
-      )}
+      {({ handleChange, handleBlur, values }) => {
+        if (userID) {
+          return <Redirect to={EnumRoutes.HOME} />;
+        }
+        return (
+          <>
+            <Heading>Sign in</Heading>
+            <StyledForm>
+              <StyledInput
+                type="text"
+                name="username"
+                placeholder="Login"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.title}
+              />
+              <StyledInput
+                type="password"
+                name="password"
+                placeholder="Password"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.title}
+              />
+              <Button activecolor="notes" type="submit">
+                sign in
+              </Button>
+            </StyledForm>
+            <StyledLink to={EnumRoutes.REGISTER}>I want my account!</StyledLink>
+          </>
+        );
+      }}
     </Formik>
   </AuthTemplate>
 );
+
+const mapStateToProps = (userID = null) => ({ userID });
 
 const mapDispatchToProps = dispatch => ({
   authenticate: (username, password) => dispatch(authenticateAction(username, password)),
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(LoginPage);

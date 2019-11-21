@@ -31,6 +31,11 @@ const INITIAL_STATE = {
 
 const rootReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case types.AUTH_SUCCESS:
+      return {
+        ...state,
+        userID: action.payload.data._id,
+      };
     case types.ADD_ITEM:
       return {
         ...state,
