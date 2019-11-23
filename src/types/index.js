@@ -8,6 +8,12 @@ class Types {
   static AUTH_SUCCESS = 'AUTH_SUCCESS';
 
   static AUTH_FAILURE = 'AUTH_FAILURE';
+
+  static FETCH_REQUEST = 'FETCH_REQUEST';
+
+  static FETCH_SUCCESS = 'FETCH_SUCCESS';
+
+  static FETCH_FAILURE = 'FETCH_FAILURE';
 }
 
 export default Types;

@@ -24,6 +24,28 @@ export const addItem = (itemType, itemContent) => {
   };
 };
 
+export const fetchItems = itemType => (dispatch, getState) => {
+  dispatch({
+    type: types.FETCH_REQUEST,
+  });
+
+  return axios
+    .get('http://localhost:9000/api/notes/type', {
+      params: {
+        type: itemType,
+        userID: getState().userID,
+      },
+    })
+    .then(({ data }) => {
+      console.log(data);
+      dispatch({ type: types.FETCH_SUCCESS, payload: { data, itemType } });
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({ type: types.FETCH_FAILURE });
+    });
+};
+
 export const authenticate = (username, password) => dispatch => {
   dispatch({
     type: types.AUTH_REQUEST,

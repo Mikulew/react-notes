@@ -31,6 +31,11 @@ const INITIAL_STATE = {
 
 const rootReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case types.FETCH_SUCCESS:
+      return {
+        ...state,
+        [action.payload.itemType]: [...action.payload.data],
+      };
     case types.AUTH_SUCCESS:
       return {
         ...state,

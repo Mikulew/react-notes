@@ -1,25 +1,38 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import GridTemplate from 'templates/GridTemplate';
 import Card from 'components/molecules/Card/Card';
 import { EnumPageTypes } from 'enums/EnumPageTypes';
+import { fetchItems } from 'actions';
 
-const Twitters = ({ twitters }) => (
-  <GridTemplate pageType={EnumPageTypes.TWITTERS}>
-    {twitters.map(twitter => (
-      <Card
-        pageContext={EnumPageTypes.TWITTERS}
-        id={twitter.id}
-        title={twitter.title}
-        content={twitter.content}
-        twitterName={twitter.twitterName}
-        created={twitter.created}
-        key={twitter.id}
-      />
-    ))}
-  </GridTemplate>
-);
+class Twitters extends Component {
+  componentDidMount() {
+    const { fetchTwitters } = this.props;
+
+    fetchTwitters();
+  }
+
+  render() {
+    const { twitters } = this.props;
+
+    return (
+      <GridTemplate pageType={EnumPageTypes.TWITTERS}>
+        {twitters.map(twitter => (
+          <Card
+            pageContext={EnumPageTypes.TWITTERS}
+            id={twitter.id}
+            title={twitter.title}
+            content={twitter.content}
+            twitterName={twitter.twitterName}
+            created={twitter.created}
+            key={twitter.id}
+          />
+        ))}
+      </GridTemplate>
+    );
+  }
+}
 
 Twitters.propTypes = {
   twitters: PropTypes.arrayOf(
@@ -38,6 +51,16 @@ Twitters.defaultProps = {
   twitters: [],
 };
 
-const mapStateToProps = ({ twitters }) => ({ twitters });
+const mapStateToProps = state => {
+  const { twitters } = state;
+  return { twitters };
+};
 
-export default connect(mapStateToProps)(Twitters);
+const mapDispatchToProps = dispatch => ({
+  fetchTwitters: () => dispatch(fetchItems('twitters')),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Twitters);
