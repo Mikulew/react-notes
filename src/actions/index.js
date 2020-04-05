@@ -36,14 +36,8 @@ export const fetchItems = itemType => (dispatch, getState) => {
         userID: getState().userID,
       },
     })
-    .then(({ data }) => {
-      console.log(data);
-      dispatch({ type: types.FETCH_SUCCESS, payload: { data, itemType } });
-    })
-    .catch(err => {
-      console.log(err);
-      dispatch({ type: types.FETCH_FAILURE });
-    });
+    .then(({ data }) => dispatch({ type: types.FETCH_SUCCESS, payload: { data, itemType } }))
+    .catch(err => dispatch({ type: types.FETCH_FAILURE }));
 };
 
 export const authenticate = (username, password) => dispatch => {
@@ -56,12 +50,6 @@ export const authenticate = (username, password) => dispatch => {
       username,
       password,
     })
-    .then(payload => {
-      console.log(payload);
-      dispatch({ type: types.AUTH_SUCCESS, payload });
-    })
-    .catch(err => {
-      console.log(err);
-      dispatch({ type: types.AUTH_FAILURE });
-    });
+    .then(payload => dispatch({ type: types.AUTH_SUCCESS, payload }))
+    .catch(err => dispatch({ type: types.AUTH_FAILURE }));
 };

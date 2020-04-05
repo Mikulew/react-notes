@@ -18,7 +18,6 @@ class MainTemplate extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('prevState', prevState);
     this.setCurrentPage(prevState);
   }
 
@@ -29,11 +28,9 @@ class MainTemplate extends Component {
     if (pathname === EnumRoutes.LOGIN || EnumRoutes.REGISTER) {
       return;
     }
-    console.log('pathname', pathname);
     const pageTypes = [EnumRoutes.NOTES, EnumRoutes.TWITTERS, EnumRoutes.ARTICLES];
     const [currentUrl] = pageTypes.filter(page => pathname.includes(page));
     const currentPage = currentUrl.replace(/^\//, '');
-    console.log('currentPage', currentPage);
     if (prevState.pageType !== currentPage) {
       this.setState({ pageType: currentPage });
     }
