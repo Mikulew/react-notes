@@ -6,7 +6,7 @@ import Card from 'components/molecules/Card/Card';
 import { EnumPageTypes } from 'enums/EnumPageTypes';
 
 const Notes = ({ notes }) => (
-  <GridTemplate pageType={EnumPageTypes.NOTES}>
+  <GridTemplate pageContext={EnumPageTypes.NOTES}>
     {notes.map(note => (
       <Card
         pageContext={EnumPageTypes.NOTES}
@@ -24,7 +24,6 @@ Notes.propTypes = {
   notes: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      pageContext: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
       created: PropTypes.string.isRequired,

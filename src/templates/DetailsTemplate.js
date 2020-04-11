@@ -55,7 +55,7 @@ const StyledImage = styled.img`
 `;
 
 const DetailsTemplate = ({ pageContext, title, created, content, articleUrl, twitterName }) => (
-  <UserPageTemplate pageType={pageContext}>
+  <UserPageTemplate>
     <StyledWrapper>
       <StyledPageHeader>
         <StyledHeading big as="h1">
