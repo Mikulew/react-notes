@@ -35,6 +35,7 @@ class Twitters extends Component {
 }
 
 Twitters.propTypes = {
+  fetchTwitters: PropTypes.func.isRequired,
   twitters: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,

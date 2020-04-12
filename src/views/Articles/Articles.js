@@ -1,27 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import GridTemplate from 'templates/GridTemplate';
 import Card from 'components/molecules/Card/Card';
 import { EnumPageTypes } from 'enums/EnumPageTypes';
+import { fetchItems } from 'actions';
 
-const Articles = ({ articles }) => (
-  <GridTemplate pageContext={EnumPageTypes.ARTICLES}>
-    {articles.map(article => (
-      <Card
-        pageContext={EnumPageTypes.ARTICLES}
-        id={article.id}
-        title={article.title}
-        content={article.content}
-        articleUrl={article.articleUrl}
-        created={article.created}
-        key={article.id}
-      />
-    ))}
-  </GridTemplate>
-);
+class Articles extends Component {
+  componentDidMount() {
+    const { fetchArticles } = this.props;
+
+    fetchArticles();
+  }
+
+  render() {
+    const { articles } = this.props;
+
+    return (
+      <GridTemplate pageContext={EnumPageTypes.ARTICLES}>
+        {articles.map(article => (
+          <Card
+            pageContext={EnumPageTypes.ARTICLES}
+            id={article.id}
+            title={article.title}
+            content={article.content}
+            articleUrl={article.articleUrl}
+            created={article.created}
+            key={article.id}
+          />
+        ))}
+      </GridTemplate>
+    );
+  }
+}
 
 Articles.propTypes = {
+  fetchArticles: PropTypes.func.isRequired,
   articles: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -37,6 +51,16 @@ Articles.defaultProps = {
   articles: [],
 };
 
-const mapStateToProps = ({ articles }) => ({ articles });
+const mapStateToProps = state => {
+  const { articles } = state;
+  return { articles };
+};
 
-export default connect(mapStateToProps)(Articles);
+const mapDispatchToProps = dispatch => ({
+  fetchArticles: () => dispatch(fetchItems('articles')),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Articles);
