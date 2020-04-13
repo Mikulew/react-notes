@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Heading from 'components/atoms/Heading/Heading';
 import logoImg from 'assets/icons/react-notes-logo.svg';
@@ -37,5 +38,9 @@ const AuthTemplate = ({ children }) => (
     <StyledAuthCard>{children}</StyledAuthCard>
   </StyledWrapper>
 );
+
+AuthTemplate.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default AuthTemplate;

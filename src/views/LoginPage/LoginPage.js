@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Formik, Form } from 'formik';
 import AuthTemplate from 'templates/AuthTemplate';
@@ -75,6 +76,15 @@ const LoginPage = ({ userID, authenticate }) => (
     </Formik>
   </AuthTemplate>
 );
+
+LoginPage.propTypes = {
+  userID: PropTypes.string,
+  authenticate: PropTypes.func.isRequired,
+};
+
+LoginPage.defaultProps = {
+  userID: null,
+};
 
 const mapStateToProps = (userID = null) => ({ userID });
 
