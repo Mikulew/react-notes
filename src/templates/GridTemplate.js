@@ -13,7 +13,7 @@ import { EnumPageTypes } from 'enums/EnumPageTypes';
 
 const StyledWrapper = styled.div`
   position: relative;
-  padding: 25px 150px 25px 70px;
+  margin: 25px 10px 25px 155px;
 `;
 
 const StyledGrid = styled.div`
