@@ -1,6 +1,7 @@
 import types from 'types';
 
 const INITIAL_STATE = {
+  userID: null,
   notes: [
     {
       id: 1,

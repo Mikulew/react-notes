@@ -37,9 +37,7 @@ const LoginPage = ({ userID, authenticate }) => (
   <AuthTemplate>
     <Formik
       initialValues={{ username: '', password: '' }}
-      onSubmit={({ username, password }) => {
-        authenticate(username, password);
-      }}
+      onSubmit={({ username, password }) => authenticate(username, password)}
     >
       {({ handleChange, handleBlur, values }) => {
         if (userID) {
@@ -65,7 +63,7 @@ const LoginPage = ({ userID, authenticate }) => (
                 onBlur={handleBlur}
                 value={values.title}
               />
-              <Button activecolor="notes" type="submit">
+              <Button activeColor="articles" type="submit">
                 sign in
               </Button>
             </StyledForm>
@@ -86,7 +84,7 @@ LoginPage.defaultProps = {
   userID: null,
 };
 
-const mapStateToProps = (userID = null) => ({ userID });
+const mapStateToProps = state => ({ userID: state.userID });
 
 const mapDispatchToProps = dispatch => ({
   authenticate: (username, password) => dispatch(authenticateAction(username, password)),
