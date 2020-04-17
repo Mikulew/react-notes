@@ -40,7 +40,7 @@ const rootReducer = (state = INITIAL_STATE, action) => {
     case types.AUTH_SUCCESS:
       return {
         ...state,
-        userID: action.payload.data.id,
+        userID: action.payload.data._id,
       };
     case types.ADD_ITEM:
       return {

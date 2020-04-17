@@ -84,7 +84,7 @@ LoginPage.defaultProps = {
   userID: null,
 };
 
-const mapStateToProps = state => ({ userID: state.userID });
+const mapStateToProps = ({ userID }) => ({ userID });
 
 const mapDispatchToProps = dispatch => ({
   authenticate: (username, password) => dispatch(authenticateAction(username, password)),
