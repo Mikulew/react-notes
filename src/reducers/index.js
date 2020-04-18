@@ -1,33 +1,10 @@
 import types from 'types';
 
 const INITIAL_STATE = {
-  userID: null,
-  notes: [
-    {
-      id: 1,
-      title: 'I want to be a React developer! #1',
-      content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam, dolorem?',
-      created: '2 days',
-    },
-  ],
-  twitters: [
-    {
-      id: 1,
-      title: 'React router',
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, animi!',
-      created: '3 days',
-      twitterName: 'react_devv',
-    },
-  ],
-  articles: [
-    {
-      id: 1,
-      title: 'React.js developer #1',
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, architecto.',
-      articleUrl: 'https://polskifrontend.pl',
-      created: '1 day',
-    },
-  ],
+  userID: '5e9a0e80975d654b282dacf4',
+  notes: [],
+  twitters: [],
+  articles: [],
 };
 
 const rootReducer = (state = INITIAL_STATE, action) => {

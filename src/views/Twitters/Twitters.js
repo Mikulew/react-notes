@@ -18,15 +18,14 @@ class Twitters extends Component {
 
     return (
       <GridTemplate pageContext={EnumPageTypes.TWITTERS}>
-        {twitters.map(twitter => (
+        {twitters.map(({ id, title, content, twitterName }) => (
           <Card
             pageContext={EnumPageTypes.TWITTERS}
-            id={twitter.id}
-            title={twitter.title}
-            content={twitter.content}
-            twitterName={twitter.twitterName}
-            created={twitter.created}
-            key={twitter.id}
+            id={id}
+            title={title}
+            content={content}
+            twitterName={twitterName}
+            key={id}
           />
         ))}
       </GridTemplate>
@@ -38,11 +37,10 @@ Twitters.propTypes = {
   fetchTwitters: PropTypes.func.isRequired,
   twitters: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
       twitterName: PropTypes.string.isRequired,
-      created: PropTypes.string.isRequired,
     }),
   ),
 };
@@ -57,7 +55,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchTwitters: () => dispatch(fetchItems('twitters')),
+  fetchTwitters: () => dispatch(fetchItems(EnumPageTypes.TWITTERS)),
 });
 
 export default connect(

@@ -18,14 +18,13 @@ class Notes extends Component {
 
     return (
       <GridTemplate pageContext={EnumPageTypes.NOTES}>
-        {notes.map(note => (
+        {notes.map(({ id, title, content }) => (
           <Card
             pageContext={EnumPageTypes.NOTES}
-            id={note.id}
-            title={note.title}
-            content={note.content}
-            created={note.created}
-            key={note.id}
+            id={id}
+            title={title}
+            content={content}
+            key={id}
           />
         ))}
       </GridTemplate>
@@ -37,10 +36,9 @@ Notes.propTypes = {
   fetchNotes: PropTypes.func.isRequired,
   notes: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
-      created: PropTypes.string.isRequired,
     }),
   ),
 };
@@ -55,7 +53,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchNotes: () => dispatch(fetchItems('notes')),
+  fetchNotes: () => dispatch(fetchItems(EnumPageTypes.NOTES)),
 });
 
 export default connect(
