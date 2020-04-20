@@ -18,7 +18,7 @@ class Notes extends Component {
 
     return (
       <GridTemplate pageContext={EnumPageTypes.NOTES}>
-        {notes.map(({ id, title, content }) => (
+        {notes.map(({ _id: id, title, content }) => (
           <Card
             pageContext={EnumPageTypes.NOTES}
             id={id}
@@ -36,7 +36,7 @@ Notes.propTypes = {
   fetchNotes: PropTypes.func.isRequired,
   notes: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
     }),

@@ -18,7 +18,7 @@ class Twitters extends Component {
 
     return (
       <GridTemplate pageContext={EnumPageTypes.TWITTERS}>
-        {twitters.map(({ id, title, content, twitterName }) => (
+        {twitters.map(({ _id: id, title, content, twitterName }) => (
           <Card
             pageContext={EnumPageTypes.TWITTERS}
             id={id}
@@ -37,7 +37,7 @@ Twitters.propTypes = {
   fetchTwitters: PropTypes.func.isRequired,
   twitters: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
       twitterName: PropTypes.string.isRequired,

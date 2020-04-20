@@ -18,7 +18,7 @@ class Articles extends Component {
 
     return (
       <GridTemplate pageContext={EnumPageTypes.ARTICLES}>
-        {articles.map(({ id, title, content, articleUrl }) => (
+        {articles.map(({ _id: id, title, content, articleUrl }) => (
           <Card
             pageContext={EnumPageTypes.ARTICLES}
             id={id}
@@ -37,7 +37,7 @@ Articles.propTypes = {
   fetchArticles: PropTypes.func.isRequired,
   articles: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
       articleUrl: PropTypes.string.isRequired,
