@@ -1,10 +1,24 @@
 import axios from 'axios';
 import types from 'types';
 
-export const removeItem = (itemType, id) => ({
-  type: types.REMOVE_ITEM,
-  payload: { itemType, id },
-});
+export const removeItem = (itemType, id) => dispatch => {
+  dispatch({
+    type: types.REMOVE_ITEM_REQUEST,
+  });
+
+  return axios
+    .delete(`localhost:9000/api/note/${id}`)
+    .then(() =>
+      dispatch({
+        type: types.REMOVE_ITEM_SUCCESS,
+        payload: {
+          itemType,
+          id,
+        },
+      }),
+    )
+    .catch(() => dispatch({ type: types.REMOVE_ITEM_FAILURE }));
+};
 
 export const addItem = (itemType, itemContent) => {
   const getId = () =>

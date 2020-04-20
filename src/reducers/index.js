@@ -24,7 +24,7 @@ const rootReducer = (state = INITIAL_STATE, action) => {
         ...state,
         [action.payload.itemType]: [...state[action.payload.itemType], action.payload.item],
       };
-    case types.REMOVE_ITEM:
+    case types.REMOVE_ITEM_SUCCESS:
       return {
         ...state,
         [action.payload.itemType]: [
