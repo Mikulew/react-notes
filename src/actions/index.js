@@ -20,22 +20,24 @@ export const removeItem = (itemType, id) => dispatch => {
     .catch(() => dispatch({ type: types.REMOVE_ITEM_FAILURE }));
 };
 
-export const addItem = (itemType, itemContent) => {
-  const getId = () =>
-    `_${Math.random()
-      .toString(36)
-      .substr(2, 9)}`;
+export const addItem = (itemType, itemContent) => (dispatch, getState) => {
+  dispatch({ type: types.ADD_ITEM_REQUEST });
 
-  return {
-    type: types.ADD_ITEM,
-    payload: {
-      itemType,
-      item: {
-        id: getId(),
-        ...itemContent,
-      },
-    },
-  };
+  return axios
+    .post('http://localhost:9000/api/note', {
+      userID: getState().userID,
+      type: itemType,
+      ...itemContent,
+    })
+    .then(({ data }) => {
+      dispatch({
+        type: types.ADD_ITEM_SUCCESS,
+        payload: {
+          itemType,
+          data,
+        },
+      });
+    });
 };
 
 export const fetchItems = itemType => (dispatch, getState) => {

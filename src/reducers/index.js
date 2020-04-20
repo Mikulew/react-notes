@@ -19,10 +19,10 @@ const rootReducer = (state = INITIAL_STATE, action) => {
         ...state,
         userID: action.payload.data._id,
       };
-    case types.ADD_ITEM:
+    case types.ADD_ITEM_SUCCESS:
       return {
         ...state,
-        [action.payload.itemType]: [...state[action.payload.itemType], action.payload.item],
+        [action.payload.itemType]: [...state[action.payload.itemType], action.payload.data],
       };
     case types.REMOVE_ITEM_SUCCESS:
       return {
