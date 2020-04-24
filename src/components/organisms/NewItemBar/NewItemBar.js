@@ -46,7 +46,7 @@ const NewItemBar = ({ pageContext, isVisible, addItem, handleClose }) => (
   <StyledWrapper isVisible={isVisible} activeColor={pageContext}>
     <Heading big>Create new {pageContext}</Heading>
     <Formik
-      initialValues={{ title: '', content: '', articleUrl: '', twitterName: '', created: '' }}
+      initialValues={{ title: '', content: '', articleUrl: '', twitterName: '' }}
       onSubmit={values => {
         addItem(pageContext, values);
         handleClose();
@@ -100,6 +100,7 @@ NewItemBar.propTypes = {
   ]),
   isVisible: PropTypes.bool.isRequired,
   addItem: PropTypes.func.isRequired,
+  handleClose: PropTypes.func.isRequired,
 };
 
 NewItemBar.defaultProps = {

@@ -10,9 +10,9 @@ import withContext from 'hoc/withContext';
 import { EnumPageTypes } from 'enums/EnumPageTypes';
 
 const StyledWrapper = styled.div`
-  padding: 25px 150px 25px 70px;
-  max-width: 50vw;
   position: relative;
+  margin: 25px 10px 25px 170px;
+  max-width: 50vw;
 
   @media (max-width: 1200px) {
     max-width: 80vw;
@@ -31,11 +31,6 @@ const StyledHeading = styled(Heading)`
   }
 `;
 
-const StyledParagraph = styled(Paragraph)`
-  margin: 0;
-  font-weight: ${({ theme }) => theme.bold};
-`;
-
 const StyledLink = styled.a`
   display: block;
   font-weight: ${({ theme }) => theme.bold};
@@ -47,31 +42,30 @@ const StyledLink = styled.a`
 
 const StyledImage = styled.img`
   position: absolute;
-  right: -80px;
+  right: -15px;
   top: 50px;
   width: 120px;
   height: 120px;
   border-radius: 50%;
 `;
 
-const DetailsTemplate = ({ pageContext, title, created, content, articleUrl, twitterName }) => (
+const DetailsTemplate = ({ pageContext, title, content, articleUrl, twitterName }) => (
   <UserPageTemplate>
     <StyledWrapper>
       <StyledPageHeader>
         <StyledHeading big as="h1">
           {title}
         </StyledHeading>
-        <StyledParagraph>{created}</StyledParagraph>
       </StyledPageHeader>
       <Paragraph>{content}</Paragraph>
       {pageContext === EnumPageTypes.ARTICLES && (
         <StyledLink href={articleUrl}>Open article</StyledLink>
       )}
       {pageContext === EnumPageTypes.TWITTERS && (
-        <StyledImage alt={title} stc={`https://avatars/io/twitter/${twitterName}`} />
+        <StyledImage alt={title} src={`https://avatars.io/twitter/${twitterName}`} />
       )}
       <Button as={Link} to={`/${pageContext}`} activeColor={pageContext}>
-        save / close
+        close
       </Button>
     </StyledWrapper>
   </UserPageTemplate>
@@ -80,7 +74,6 @@ const DetailsTemplate = ({ pageContext, title, created, content, articleUrl, twi
 DetailsTemplate.propTypes = {
   pageContext: PropTypes.string.isRequired,
   title: PropTypes.string,
-  created: PropTypes.string,
   content: PropTypes.string,
   articleUrl: PropTypes.string,
   twitterName: PropTypes.string,
@@ -88,7 +81,6 @@ DetailsTemplate.propTypes = {
 
 DetailsTemplate.defaultProps = {
   title: '',
-  created: '',
   content: '',
   articleUrl: '',
   twitterName: '',

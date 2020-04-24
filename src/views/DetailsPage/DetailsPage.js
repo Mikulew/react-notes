@@ -1,45 +1,39 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import axios from 'axios';
+
 import DetailsTemplate from 'templates/DetailsTemplate';
 import withContext from '../../hoc/withContext';
-import { connect } from 'react-redux';
-import axios from 'axios';
+import { EnumRoutes } from '../../enums/EnumRoutes';
 
 class DetailsPage extends Component {
   state = {
-    activeItem: {
-      title: '',
-      content: '',
-      articleUrl: '',
-      twitterName: '',
-    },
+    activeItem: null,
+    fetching: true,
   };
 
   componentDidMount() {
     const {
-      activeItem,
       match: {
         params: { id },
       },
+      history: { push },
     } = this.props;
-
-    if (activeItem) {
-      const [activeItem] = this.props.activeItem;
-      return this.setState({ activeItem });
-    }
 
     return axios
       .get(`http://localhost:9000/api/note/${id}`)
-      .then(({ data }) => this.setState({ activeItem: data }))
-      .catch(err => console.log(err));
+      .then(({ data }) => this.setState({ activeItem: data, fetching: false }))
+      .catch(() => push(EnumRoutes.NOTES));
   }
 
   render() {
-    const { activeItem } = this.props;
+    const { activeItem, fetching } = this.state;
 
-    return (
+    return fetching ? (
+      'fetching'
+    ) : (
       <DetailsTemplate
         title={activeItem.title}
-        created={activeItem.created}
         content={activeItem.content}
         articleUrl={activeItem.articleUrl}
         twitterName={activeItem.twitterName}
@@ -48,10 +42,15 @@ class DetailsPage extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  activeItem: state[ownProps.pageContext].length
-    ? state[ownProps.pageContext].filter(item => item.id === ownProps.match.params.id)
-    : null,
-});
+DetailsPage.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }).isRequired,
+  }).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
-export default withContext(connect(mapStateToProps)(DetailsPage));
+export default withContext(DetailsPage);
