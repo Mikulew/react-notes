@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { EnumPageTypes } from 'enums/EnumPageTypes';
 import GridTemplate from 'templates/GridTemplate';
 import Card from 'components/molecules/Card/Card';
-import { EnumPageTypes } from 'enums/EnumPageTypes';
-import { fetchItems } from 'actions';
 
 class Articles extends Component {
   componentDidMount() {
@@ -49,16 +48,4 @@ Articles.defaultProps = {
   articles: [],
 };
 
-const mapStateToProps = state => {
-  const { articles } = state;
-  return { articles };
-};
-
-const mapDispatchToProps = dispatch => ({
-  fetchArticles: () => dispatch(fetchItems(EnumPageTypes.ARTICLES)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Articles);
+export default Articles;

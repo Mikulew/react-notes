@@ -1,15 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { Link, Redirect } from 'react-router-dom';
 import { Formik, Form } from 'formik';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
 import AuthTemplate from 'templates/AuthTemplate';
 import Heading from 'components/atoms/Heading/Heading';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
-import { Link, Redirect } from 'react-router-dom';
 import { EnumRoutes } from 'enums/EnumRoutes';
-import { connect } from 'react-redux';
-import { authenticate as authenticateAction } from 'actions';
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -84,13 +83,4 @@ LoginPage.defaultProps = {
   userID: null,
 };
 
-const mapStateToProps = ({ userID }) => ({ userID });
-
-const mapDispatchToProps = dispatch => ({
-  authenticate: (username, password) => dispatch(authenticateAction(username, password)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(LoginPage);
+export default LoginPage;

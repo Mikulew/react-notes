@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import GridTemplate from 'templates/GridTemplate';
 import Card from 'components/molecules/Card/Card';
 import { EnumPageTypes } from 'enums/EnumPageTypes';
-import { fetchItems } from 'actions';
 
 class Notes extends Component {
   componentDidMount() {
@@ -47,16 +46,4 @@ Notes.defaultProps = {
   notes: [],
 };
 
-const mapStateToProps = state => {
-  const { notes } = state;
-  return { notes };
-};
-
-const mapDispatchToProps = dispatch => ({
-  fetchNotes: () => dispatch(fetchItems(EnumPageTypes.NOTES)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Notes);
+export default Notes;

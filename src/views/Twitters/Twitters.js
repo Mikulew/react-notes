@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import GridTemplate from 'templates/GridTemplate';
 import Card from 'components/molecules/Card/Card';
 import { EnumPageTypes } from 'enums/EnumPageTypes';
-import { fetchItems } from 'actions';
 
 class Twitters extends Component {
   componentDidMount() {
@@ -49,16 +48,4 @@ Twitters.defaultProps = {
   twitters: [],
 };
 
-const mapStateToProps = state => {
-  const { twitters } = state;
-  return { twitters };
-};
-
-const mapDispatchToProps = dispatch => ({
-  fetchTwitters: () => dispatch(fetchItems(EnumPageTypes.TWITTERS)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Twitters);
+export default Twitters;
