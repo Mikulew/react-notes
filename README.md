@@ -3,6 +3,7 @@
 - [General info](#general-info)
 - [Technologies](#technologies)
 - [Setup](#setup)
+- [Source](#Source)
 
 ## General info
 
@@ -47,3 +48,7 @@ npm run build
 # remove the "dist" directory
 npm run clean
 ```
+
+## Source
+
+This project is written step by step according to [this course](https://eduweb.pl/programowanie-i-www/reactjs/react-w-praktyce "Visit website"). I only slightly modified it.
