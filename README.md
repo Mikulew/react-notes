@@ -7,7 +7,9 @@
 
 ## General info
 
-> React notes
+A **notebook** (also known as a **notepad**, **writing pad**, **drawing pad**, or **legal pad**) is a book or stack of paper pages that are often ruled and used for purposes such as recording notes or memoranda, other writing, drawing or scrapbooking.
+
+**Digital paper** combines the simplicity of a traditional pen and notebook with digital storage and interactivity. By printing an invisible dot pattern on the notebook paper and using a pen with a built in infrared camera the written text can be transferred to a laptop, mobile phone or backoffice for storage and processing.
 
 ## Technologies
 
