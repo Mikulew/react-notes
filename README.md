@@ -3,7 +3,7 @@
 - [General info](#general-info)
 - [Technologies](#technologies)
 - [Setup](#setup)
-- [Source](#Source)
+- [Source](#source)
 
 ## General info
 
